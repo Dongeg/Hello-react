@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script type="text/babel">
+			//jsx不是一种语法
+			//自定义组件名首字母大写如HelloWorld，且一般为驼峰命名，DOM自带首字母小写
+			//支持嵌套
+			//htmlFor    className
+			// 
+
+
+
+			//以对象的方式定义css样式，驼峰命名
+			var style={
+			   color:"red",
+			   border:"1px solid #aaa",
+			   backgroundColor:"blue",
+			}
+            /*
+               jsx条件判断的四种写法
+               注意：  {}中不能放语句，只能放表达式
+               1.三元表达式：  {this.props.name?this.props.name:"world"}
+               2. getName:function(){
+                     if(this.props.name){
+                     	return this.props.name;
+                     }
+                     else{
+                     	return "world";
+                     }
+                  },
+                  render:function(){
+                  	var name=this.getName();
+                  	return(<p>hello, {name}</p>)
+                  }
+
+               3.直接在{}中调用函数
+                render:function(){
+               	return(<p>jello,{this.getName}<p>)
+               }
+               4.比较运算符
+                 render:function(){
+                 	return(<p>hello,{this.props||"world"}</p>)
+                 }
+            */
+
+
+
+			var HelloWorld=React.createClass({
+			  render:function(){
+			  	return(
+                   <div className="test">hello  {this.props.name?this.props.name:"world"}</div>
+			  		)
+			  },
+			})
+			//style={style}引用css样式
+			ReactDOM.render(<div style={style}><HelloWorld  name="join"></HelloWorld></div>,document.body)
+	</script>
+</body>
