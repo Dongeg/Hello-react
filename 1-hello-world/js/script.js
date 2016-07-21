@@ -1,4 +1,2 @@
-ReactDOM.render(
-  <h1>hello,react</h1>,
-  document.getElementById('content')
-);
+//react组件渲染到body节点中
+ReactDOM.render(<h1>hello world</h1>,document.body)
