@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>初始化阶段</title>
+</head>
+<body>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+	    <script src="js/react.min.js"></script>
+	    <script src="js/react-dom.min.js"></script>
+	    <script src="js/react-with-addons.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+		<script type="text/babel">
+			$(function(){
+				var count=0;
+				var HelloWorld=React.createClass({
+					getDefaultProps:function(){
+                       console.log("getDefaultProps,1");
+                       return{name:"tom"};
+					},
+					getInitialState:function(){
+						console.log("getInitialState,2");
+						return{mycount:count++,
+							   ready:false};
+					},
+					componentWillMount:function(){
+						console.log("componentWillMount,3");
+						this.setState({ready:true});
+					},
+					render:function(){
+						console.log("render,4");
+						return(
+                            <p>hello,{this.props.name?this.props.name:"world"}
+                               <br/>{""+this.state.ready}{this.state.myCount}
+                            </p>
+							)
+					},
+					componentDidMount:function(){
+						console.log("componentDidMount,5");
+						$(ReactDOM.findDOMNode(this)).append("sbsbsbsb");
+					},
+				})
+				ReactDOM.render(<HelloWorld></HelloWorld>,document.body);
+			})
+		</script>	
+</body>
+</html>

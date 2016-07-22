@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />       
+	</head>
+	<body>
+	    <p>组件的生命周期：初始化阶段，运行中阶段，销毁阶段</p>
+	    <p>初始化阶段：编写的组件代码（react.createClass({})）生成组件实例</p>
+	    <p>运行中阶段</p>
+	    <p>销毁阶段：不使用组件时组件的实例就会被销毁</p>
+	    <ul>
+	        <li>初始化阶段的5个钩子函数</li>
+	    	<li>getDefaultProps</li> <!-- 只在第一个实例初始化时被调用 ，在react.createClass之后立即执行-->   
+	    	<li>getInitialState</li>
+	    	<li>componentWillMount</li>
+	    	<li>render</li>
+	    	<li>comonentDidMount</li>
+	    </ul>
+	    <ul>
+	    	<li>运行中阶段可以使用的函数</li>
+	    	<li>componentWillReceiveProps</li>
+	    	<li>shouldComponentupdate</li><!--返回false，泽后面的函数不执行-->
+	    	<li>componemtWillupdate</li>
+	    	<li>render</li>
+	    	<li>componentDidUpdate</li>
+	    </ul>
+	    <ul>
+	    	<li>销毁阶段使用的函数</li>
+	    	<li>componentWillUnmount</li>
+	    </ul>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+	    <script src="js/react.min.js"></script>
+	    <script src="js/react-dom.min.js"></script>
+	    <script src="js/react-with-addons.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+		<script type="text/babel" src="js/script.js" ></script>
+	</body>
+</html>
