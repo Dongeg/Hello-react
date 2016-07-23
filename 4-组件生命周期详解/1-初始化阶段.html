@@ -14,15 +14,18 @@
 			$(function(){
 				var count=0;
 				var HelloWorld=React.createClass({
+					// 设置默认属性
 					getDefaultProps:function(){
                        console.log("getDefaultProps,1");
                        return{name:"tom"};
 					},
+					//初始状态
 					getInitialState:function(){
 						console.log("getInitialState,2");
 						return{mycount:count++,
 							   ready:false};
 					},
+					//修改状态
 					componentWillMount:function(){
 						console.log("componentWillMount,3");
 						this.setState({ready:true});
@@ -35,6 +38,7 @@
                             </p>
 							)
 					},
+					//修改DOM
 					componentDidMount:function(){
 						console.log("componentDidMount,5");
 						$(ReactDOM.findDOMNode(this)).append("sbsbsbsb");

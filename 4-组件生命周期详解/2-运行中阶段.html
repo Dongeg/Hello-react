@@ -10,6 +10,51 @@
 	    <script src="js/react-dom.min.js"></script>
 	    <script src="js/react-with-addons.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-		<script type="text/babel" src="js/script.js" ></script>	
+		<script type="text/babel">
+        $(document).ready(
+            function() {
+                var style = {
+                    color: "red",
+                    border: "1px #000 solid",
+                };
+                var HelloWorld = React.createClass({
+                    componentWillReceiveProps: function (newProps) {
+                        console.log("componentWillReceiveProps 1");
+                        console.log(newProps);
+                    },
+                    shouldComponentUpdate: function () {
+                        console.log("shouldComponentUpdate 2");
+                        return true;
+                    },
+                    componentWillUpdate: function () {
+                        console.log("componentWillUpdate 3");
+                    },
+                    render: function () { 
+                        console.log("render 4");
+                        return (<p>Hello, {this.props.name ? this.props.name : "World"}</p>)
+                    },
+                    componentDidUpdate: function() {
+                        $(ReactDOM.findDOMNode(this)).append("surprise!");
+                    },
+                });
+                var HelloUniverse = React.createClass({
+                    getInitialState: function () {
+                        return {name: ''};
+                    },
+                    handleChange: function (event) {
+                        this.setState({name: event.target.value});
+                    },
+                    render: function () {
+                        return  (<div>
+		                        <HelloWorld name={this.state.name}></HelloWorld>
+		                        <br/>
+		                        <input type="text" onChange={this.handleChange} />
+		                        </div>)
+                    },
+                });
+                ReactDOM.render(<div style={style}><HelloUniverse></HelloUniverse></div>, document.body);
+            }
+        );
+		</script>	
 </body>
 </html>
