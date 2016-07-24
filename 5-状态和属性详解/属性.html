@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />       
+	</head>
+	<body>
+	<!--  
+	    1.属性：属性不可以由组件自己修改
+	    2.属性的用法
+	       1.调用组件时传入一个键值对，<hello name="tom" />
+	            值中可以传入  1. "字符串""   2.{求值表达式，如数字}  3.{"字符串"}  4.数组 {[1,2,3]}  5.{变量}
+	       2.展开调用 
+	             var props={
+	               one:"123",
+	               two:"456"
+	             }
+	             <helloWorld {...props}/>   //直接拿到props中的两个对象
+	       3.    XXX.setProps({name:"tom"});   //不建议使用    
+    -->
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+	    <script src="js/react.min.js"></script>
+	    <script src="js/react-dom.min.js"></script>
+	    <script src="js/react-with-addons.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+		<script type="text/babel">
+			var style={
+				color:"blue",
+				border:"1px #000 solid",
+				textAlign:"center", 
+			};
+			var HelloWorld=React.createClass({
+				render:function(){
+					return(
+                       <p>Hello,{this.props.name?this.props.name:"world"}</p>
+						)
+				}
+			});
+            var HelloUniverse=React.createClass({
+            	getInitialState:function(){
+            		return{name:""}
+            	},
+            	handleChange:function(event){
+            		 this.setState({name:event.target.value})
+            	},
+            	render:function(){
+            		return(
+            			<div>
+            				<HelloWorld name={this.state.name}></HelloWorld>
+            				<br />
+            				<input type="text" onChange={this.handleChange} />
+            			</div>
+            			)
+            	}
+            });
+            ReactDOM.render(<div style={style}><HelloUniverse></HelloUniverse></div>,document.body)
+		</script>
+	</body>
+</html>
