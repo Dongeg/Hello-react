@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件关联状态</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/react-with-addons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script type="text/babel">
+		var HelloWorld=React.createClass({
+			getInitialState:function(){
+				return{
+					x:0,
+					y:0
+				}
+			},
+			handleMouseMove:function(event){
+                this.setState({
+                	x:event.clientX,
+                    y:event.clientY
+                });
+			},
+			render:function(){
+				return(
+					<div onMouseMove={this.handleMouseMove} style={{
+						height:'700px',
+						width:'1000px',
+						backgroundColor:'gray'
+					}}>
+					{this.state.x+','+this.state.y}	
+					</div>
+					)
+			},
+		})
+		ReactDOM.render(<HelloWorld></HelloWorld>,document.body);
+	</script>
+</body>
+</html>
