@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+	<script src="js/react.min.js"></script>
+	<script src="js/react-dom.min.js"></script>
+	<script src="js/react-with-addons.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script type="text/babel">
+	    var HelloWorld=React.createClass({
+	    	getInitialState:function(){
+	    		return{
+                   value:''
+	    		}
+	    	},
+	        handleChange:function(event){
+                this.setState({value:event.target.value})
+	        },
+	        render:function(){
+	        	//注意，return中所有元素都必须包在一个容器内！！！
+	        	return(<div>
+	        		     <input type="text" onChange={this.handleChange} />
+	        		     <br />
+	        		     <p>{this.state.value}</p>
+	        	       </div>	        		
+	        		)
+	        }
+	    })
+	    ReactDOM.render(<HelloWorld></HelloWorld>,document.body)
+	</script>
+</body>
+</html>

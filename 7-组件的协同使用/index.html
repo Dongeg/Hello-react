@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />       
+	</head>
+	<body>
+<!--         组件的协同的使用：对组件的一种组织管理方式
+        目的：1.逻辑清晰
+              2.代码模块化
+              3.封装细节
+              4.代码可复用
+        实现方式：
+              1.组件嵌套（代码封装）
+              2.mixin   （代码复用）
+
+        组件嵌套的本质是父子关系，父组件通过属性与子组件通信，子组件通过委托与父组件通信 -->
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+	    <script src="js/react.min.js"></script>
+	    <script src="js/react-dom.min.js"></script>
+	    <script src="js/react-with-addons.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+		<script type="text/babel">
+			var GenderSelect=React.createClass({
+				render:function(){
+					return (
+						<select onChange={this.props.handleSelect}>
+							<option value="0">男</option>
+							<option value="1">女</option>
+						</select>
+						)
+				}
+			});
+			var SignupFrom=React.createClass({
+				getInitialState:function(){
+					return{
+						name:'',
+						password:'',
+						gender:'',
+					}
+				},
+				handleChange:function(name,event){
+					// 新建一个对象
+                    var newState={};
+                    //对象内新建一个键名为参数name的键值对，并把值赋值为event.target.value
+                    newState[name]=event.target.value;
+                    //this.setSate(name:event.target.value)
+                    this.setState(newState)
+
+				},
+				handleSelect:function(event){
+                     this.setState({gender:event.target.value})
+				},
+				render:function(){
+					console.log(this.state);
+					return (
+						<form>
+							<input type="text" placeholder="请输入用户名" onChange={this.handleChange.bind(this,'name')} />
+							<input type="text" placeholder="请输入密码" onChange={this.handleChange.bind(this,'password')} />
+							<GenderSelect handleSelect={this.handleSelect}></GenderSelect>
+						</form>
+						)
+				}
+			})
+			ReactDOM.render(<SignupFrom></SignupFrom>,document.body)
+		</script>
+	</body>
+</html>

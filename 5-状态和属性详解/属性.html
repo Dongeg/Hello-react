@@ -25,36 +25,37 @@
 	    <script src="js/react-with-addons.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 		<script type="text/babel">
-			var style={
-				color:"blue",
-				border:"1px #000 solid",
-				textAlign:"center", 
-			};
-			var HelloWorld=React.createClass({
-				render:function(){
-					return(
-                       <p>Hello,{this.props.name?this.props.name:"world"}</p>
-						)
-				}
-			});
-            var HelloUniverse=React.createClass({
-            	getInitialState:function(){
-            		return{name:""}
-            	},
-            	handleChange:function(event){
-            		 this.setState({name:event.target.value})
-            	},
-            	render:function(){
-            		return(
-            			<div>
-            				<HelloWorld name={this.state.name}></HelloWorld>
-            				<br />
-            				<input type="text" onChange={this.handleChange} />
-            			</div>
-            			)
-            	}
-            });
-            ReactDOM.render(<div style={style}><HelloUniverse></HelloUniverse></div>,document.body)
+
+		var MarkdownEditor = React.createClass({
+		  getInitialState: function() {
+		    return {value: 'Type some *markdown* here!'};
+		  },
+		  handleChange: function() {
+		    this.setState({value: this.refs.textarea.value});
+		  },
+		  rawMarkup: function() {
+		    var md = new Remarkable();
+		    return { __html: md.render(this.state.value) };
+		  },
+		  render: function() {
+		    return (
+		      <div className="MarkdownEditor">
+		        <h3>Input</h3>
+		        <textarea
+		          onChange={this.handleChange}
+		          ref="textarea"
+		          defaultValue={this.state.value} />
+		        <h3>Output</h3>
+		        <div
+		          className="content"
+		          dangerouslySetInnerHTML={this.rawMarkup()}
+		        />
+		      </div>
+		    );
+		  }
+		});
+
+		ReactDOM.render(<MarkdownEditor />, mountNode);
 		</script>
 	</body>
 </html>
