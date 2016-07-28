@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mixin</title>
+</head>
+<body>
+    <h3>mixin介绍</h3>
+    <p>
+    	mixin是一组方法，用于横向抽离相似代码，和sass中的mixin意义差不多
+    </p>
+    <div id="mixin"></div>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/react-with-addons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script type="text/babel">
+	      //用mixin实现双向绑定数据
+          var HandleMixin={
+          	handleChange:function(key){
+          		var that=this;
+              var newState={};
+                return function(event){               	
+                	newState[key]=event.target.value;
+                	that.setState(newState);
+                }
+          	}
+          }
+          var HelloWorld=React.createClass({
+          	mixins:[HandleMixin],
+          	getInitialState:function(){
+          		return{
+          			name:'',
+          			age:'',
+          			sex:''
+          		}
+          	},
+          	render:function(){
+          		return(
+          			<div>
+          				<input type="text" placeholder="输入姓名" onChange={this.handleChange('name')} />
+          				<input type="number" placeholder="输入年龄" onChange={this.handleChange('age')} />
+          				<input type="text" placeholder="输入性别" onChange={this.handleChange('sex')} />
+          				<p>{this.state.name}</p>
+          				<p>{this.state.age}</p>
+          				<p>{this.state.sex}</p>
+          			</div>
+          			)
+          	},
+
+          })
+          ReactDOM.render(<HelloWorld></HelloWorld>,document.getElementById("mixin"));
+	</script>
+</body>
+</html>

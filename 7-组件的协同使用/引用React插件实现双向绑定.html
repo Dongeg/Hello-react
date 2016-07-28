@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script src="js/react-with-addons.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/react-with-addons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script type="text/babel">
+		var HelloWorld=React.createClass({
+		    mixins:[React.addons.LinkedStateMixin],
+		    getInitialState:function(){
+		    	return{
+		    		name:'',
+		    		age:'',
+		    		sex:'',
+		    	}
+		    },
+		    render:function(){
+		    	return(
+		    		<div>
+		    		   <input type="text" placeholder="name" valueLink={this.linkState('name')} />
+		    		   <p>{this.state.name}</p>	
+		    		</div>
+		    		)
+		    },
+		})
+		ReactDOM.render(<HelloWorld></HelloWorld>,document.body);
+	</script>
+</body>
+</html>

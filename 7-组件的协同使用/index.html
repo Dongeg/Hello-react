@@ -43,7 +43,7 @@
 				handleChange:function(name,event){
 					// 新建一个对象
                     var newState={};
-                    //对象内新建一个键名为参数name的键值对，并把值赋值为event.target.value
+                    //对象内新建一个名为name的属性，并把属性赋值为event.target.value
                     newState[name]=event.target.value;
                     //this.setSate(name:event.target.value)
                     this.setState(newState)
