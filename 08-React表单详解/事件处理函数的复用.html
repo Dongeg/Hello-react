@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件处理函数的复用</title>
+</head>
+<body>
+    <div>
+	    <h3>bind复用</h3>
+	    handleChange：function(name,event){
+	        
+	    }
+	    onChange={this.handeChange.bind(this,'age')}
+
+
+	    <h3>name复用</h3>
+	    handleChange:function(event){
+	          var name=event.target.name
+	    }
+	    onChange={this.handleChange}    	
+    </div>
+    <div id="main"></div>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/react-with-addons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script type="text/babel">
+         var Registered=React.createClass({
+            getInitialState:function(){
+            	return{
+            		name:'',
+            		phone:'',
+            		email:'',
+            		love:'1',
+            		checked:'checked'
+            	}
+            },
+         	handleChange:function(name,event){
+                    var newState={};
+                    newState[name]=name == "checked" ? event.target.checked : event.target.value;
+                    this.setState(newState);
+         	},
+         	handleSubmit:function(event){
+                 event.preventDefault();
+                 console.log(this.state);
+         	},
+         	render:function(){
+         		return(
+         			<form onSubmit={this.handleSubmit}>
+         			    <label>姓名</label>
+         				<p><input type="text" onChange={this.handleChange.bind(this,'name')} /></p>
+         			    <label>手机</label>
+         				<p><input type="text" onChange={this.handleChange.bind(this,'phone')}/></p>
+         			    <label>邮箱</label>         			  
+         				<p><input type="email" onChange={this.handleChange.bind(this,'email')}/></p>
+         				<label>爱好</label>
+                        <p>
+                          <select onChange={this.handleChange.bind(this,'love')}>
+                          	<option value="1">波多野结衣</option>
+                          	<option value="2">美竹玲</option>
+                          	<option value="3">吉泽明步</option>
+                          	<option value="4">仓麻优</option>
+                          </select>
+                        </p>
+                        <label>同意用户协议</label>
+                        <p><input type="checkbox" checked={this.state.checked} onChange={this.handleChange.bind(this,'checked')} /></p>
+                        <input type="submit" />
+         			</form>
+         			)
+         	},
+         })
+         ReactDOM.render(<Registered></Registered>,document.getElementById("main"));
+	</script>
+</body>
+</html>
