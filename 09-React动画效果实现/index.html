@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.example-enter {
+			  opacity: 0.01;
+			}
+
+			.example-enter.example-enter-active {
+			  opacity: 1;
+			  transition: opacity 500ms ease-in;
+			}
+
+			.example-leave {
+			  opacity: 1;
+			}
+
+			.example-leave.example-leave-active {
+			  opacity: 0.01;
+			  transition: opacity 300ms ease-in;
+			}
+		</style>      
+	</head>
+	<body>
+	    <h3>实现动画方法介绍</h3>
+	    <p>                 优点                    缺点
+	    	1.css3动画      性能高，易于使用        兼容性？无法实现复杂效果
+	    	2.js动画        兼容性强                性能差，难调试
+	    	3.raf           兼容性一般性能较高      被css3取代
+	    	4.SVG           高性能，能实现复杂效果  编写难度大
+	    </p>
+	   <p> React中运用css3动画，其效果就是把css中使用的css3动画的
+                 .class{
+                    opacity: 0.01;
+                 }
+                 .class:hover{
+                    opacity: 1;
+                    transition: opacity 500ms ease-in;
+                 }
+            拆分成四部分
+
+            原始状态到动画实现
+			.example-enter {
+			  opacity: 0.01;
+			}
+
+			.example-enter.example-enter-active {
+			  opacity: 1;
+			  transition: opacity 500ms ease-in;
+			}
+			实现状态还原到原始状态
+			.example-leave {
+			  opacity: 1;
+			}
+
+			.example-leave.example-leave-active {
+			  opacity: 0.01;
+			  transition: opacity 300ms ease-in;
+			}			
+        </p>
+	    <div id="main"></div>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<!-- 要使用带插件的react -->
+	    <script src="js/react-with-addons.min.js"></script>
+	    <script src="js/react-dom.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+		<script type="text/babel">
+			var ReactCSSTransitionGroup=React.addons.CSSTransitionGroup;
+			var TodoList = React.createClass({
+			  getInitialState: function() {
+			    return {items: ['hello', 'world', 'click', 'me']};
+			  },
+			  handleAdd: function() {
+			    var newItems =this.state.items.concat([prompt('Enter some text')]);
+			    this.setState({items: newItems});
+			  },
+			  handleRemove: function(i) {
+			    var newItems = this.state.items.slice();
+			    newItems.splice(i, 1);
+			    this.setState({items: newItems});
+			  },
+			  render: function() {
+			    var items = this.state.items.map(function(item, i) {
+			      return (
+			        <div key={item} onClick={this.handleRemove.bind(this, i)}>
+			          {item}
+			        </div>
+			      );
+			    }.bind(this));
+			    return (
+			      <div>
+			        <button onClick={this.handleAdd}>Add Item</button>
+			        <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+			          {items}
+			        </ReactCSSTransitionGroup>
+			      </div>
+			    );
+			  }
+			});
+			ReactDOM.render(<TodoList></TodoList>,document.getElementById("main"));
+		</script>
+	</body>
+</html>
