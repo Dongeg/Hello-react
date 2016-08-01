@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />       
+	</head>
+	<body>
+	    为什么要调优
+
+	    react父组件更新默认触发所有子组件的更新
+        解决方法：子组件覆盖shouldComponentUpadte方法，自行决定组件是否更新
+
+	    列表类型组件默认的更新方式比较复杂，
+	    解决方法：需要给每个列表内容在组件内部加一个唯一key值
+
+	    调优时机
+	    避免过早优化
+	    要在完成所有功能后，如果发现性能问题再调优
+
+
+
+	    React性能分析工具的介绍 perf
+
+	    perf.start();
+	    测试部分
+	    perf.stop();
+
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+	    <script src="js/react.min.js"></script>
+	    <script src="js/react-dom.min.js"></script>
+	    <script src="js/react-with-addons.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+		<script type="text/babel">
+			
+		</script>
+	</body>
+</html>
