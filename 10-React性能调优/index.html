@@ -20,16 +20,23 @@
 
 
 
-	    React性能分析工具的介绍 perf
+	    React性能分析工具的介绍 Perf
+        注意：（坑爹，这个工具只能在react开发者模式下使用）
 
-	    perf.start();
+
+	    React.addons.Perf.start();
 	    测试部分
-	    perf.stop();
+	    React.addons.Perf.stop();
 
+        查看结果
+	    React.addons.Perf.printInclusive()
+
+	    测试时最好只对单个操作进行测试
+         
 		<script type="text/javascript" src="js/jquery.min.js" ></script>
-	    <script src="js/react.min.js"></script>
-	    <script src="js/react-dom.min.js"></script>
 	    <script src="js/react-with-addons.min.js"></script>
+	    <script src="js/react-dom.min.js"></script>
+	    
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 		<script type="text/babel">
 			
