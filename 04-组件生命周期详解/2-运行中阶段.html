@@ -45,11 +45,13 @@
 				this.setState({name: event.target.value});
 			    },
 			    render: function () {
-				return  (<div>
-						<HelloWorld name={this.state.name}></HelloWorld>
-						<br/>
-						<input type="text" onChange={this.handleChange} />
-						</div>)
+				return  (
+					<div>
+					<HelloWorld name={this.state.name}></HelloWorld>
+					<br/>
+					<input type="text" onChange={this.handleChange} />
+					</div>
+					)
 			    },
 			});
 			ReactDOM.render(<div style={style}><HelloUniverse></HelloUniverse></div>, document.body);
